@@ -1,13 +1,9 @@
 import React from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from 'recharts';
+import { useEffect, useState } from 'react';
 import '../App.css'
 
-const data = [
-  { name: 'Virat Kohli', value: 273 },
-  { name: 'Ms Dhoni', value: 89 },
-  { name: 'Rohit Sharma', value: 88 },
-  { name: 'Yuvraj Singh', value: 52 },
-];
+
 
 const COLORS = ['#116731', '#5c0762', '#040546', 'black'];
 
@@ -25,6 +21,24 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 };
 
 const Piechart = () => {
+
+  const [data, setdata] = useState([]);
+  useEffect(() => {
+    
+    try {
+      fetch("/getpie")
+      .then(res=>{
+        return res.json()
+      })
+      .then(msg=>{
+        setdata(msg.data)
+      })
+      
+    } catch (error) {
+      alert(error)
+    }
+    
+  }, []);
   return (
     <div style={{ width: "100%", height: "100%" }}>
         <p style={{padding:"0px 20px"}}>Runs Scored By Virat And Others in 2016 World Cup </p>

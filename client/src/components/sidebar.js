@@ -4,6 +4,7 @@ import { Routes, BrowserRouter , Route, Navigate , useNavigate , useLocation } f
 import   '../App.css'
 import Vklogo from "../images/vklogo.png";
 
+
 const Side=()=>{
 
 
@@ -27,6 +28,7 @@ const Side=()=>{
                 <a href="#" className="tab">T20</a>
                 <a href="#" className="tab">IPL</a>
                 <a href="#" className="tab">Contact</a>
+                <a href="/Update" className="tab">Update</a>
 
             </div>
             <p style={{marginTop:"220px" , fontSize:"18px" ,cursor:"pointer"}}>LogOut > </p>

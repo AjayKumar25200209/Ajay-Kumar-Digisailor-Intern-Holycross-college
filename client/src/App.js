@@ -5,35 +5,10 @@ import { Routes, BrowserRouter , Route, Navigate } from 'react-router-dom';
 
 import Dashboard from './pages/dasboard'
 import Viratodi from './pages/viratodi'
+import Update from './pages/update'
 
 function App() {
-  const [Data, setData] = useState({});
-
-  useEffect(() => {
-
-    fetch('/api/home')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then(data => {
-        
-        setData(data); 
-        console.log(data.name);
-        
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
-  }, []); 
-
-
-  console.log(Data);
-
-
-
+  
   return (
     <div className="App">
       
@@ -41,6 +16,7 @@ function App() {
         <Routes>
             <Route path="/" element={ <Viratodi  /> } />
             <Route path="/Viratodi" element={<Dashboard  /> } />
+            <Route path="/Update" element={<Update  /> } />
 
 
         </Routes>

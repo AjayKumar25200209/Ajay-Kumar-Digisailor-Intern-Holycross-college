@@ -1,41 +1,27 @@
 import React from 'react';
+import { useEffect, useState } from 'react';
 import { Radar, RadarChart, PolarGrid, Legend, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from 'recharts';
 
-const data = [
-  {
-    subject: 'Batting',
-    A: 100,
-
-    fullMark: 100,
-  },
-  {
-    subject: 'Fielding',
-    A: 98,
-
-    fullMark: 100,
-  },
-  {
-    subject: 'Bowling',
-    A: 86,
-
-    fullMark: 100,
-  },
-  {
-    subject: 'Fitness',
-    A: 99,
-
-    fullMark: 100,
-  },
-  {
-    subject: 'Captain',
-    A: 85,
-
-    fullMark: 100,
-  },
-  
-];
 
 const Radarchart = () => {
+
+  const [data, setdata] = useState([]);
+  useEffect(() => {
+    
+    try {
+      fetch("/getradar")
+      .then(res=>{
+        return res.json()
+      })
+      .then(msg=>{
+        setdata(msg.data)
+      })
+      
+    } catch (error) {
+      alert(error)
+    }
+    
+  }, []);
   return (
     <div style={{ width: "100%", height: "100%" }}>
       <p>Virat kohli as a Cricketer</p>
@@ -44,7 +30,7 @@ const Radarchart = () => {
             <PolarGrid />
             <PolarAngleAxis dataKey="subject" />
             <PolarRadiusAxis angle={30} domain={[0, 100]} />
-            <Radar name="Virat Kohli" dataKey="A" stroke="" fill="#116731" fillOpacity={0.5} />
+            <Radar name="Virat Kohli" dataKey="mark" stroke="" fill="#116731" fillOpacity={0.5} />
            
             <Legend  wrapperStyle={{ marginBottom: "20px" }}  align="center" />
         </RadarChart>

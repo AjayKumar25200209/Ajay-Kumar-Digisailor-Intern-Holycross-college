@@ -1,67 +1,32 @@
 import React from 'react';
 import '../App.css'
+import { useEffect, useState } from 'react';
 import { BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer , LineChart ,Line } from 'recharts';
 
-const data = [
-  {
-    name: '2015',
-    
-    "ODI Runs": 623,
-    amt: 2400,
-  },
-  {
-    name: '2016',
-    
-    "ODI Runs": 739,
-    amt: 2210,
-  },
-  {
-    name: '2017',
-    
-    "ODI Runs": 1460,
-    amt: 2290,
-  },
-  {
-    name: '2018',
-    
-    "ODI Runs": 1202,
-    amt: 2000,
-  },
-  {
-    name: '2019',
-   
-   "ODI Runs": 1377,
-    amt: 2181,
-  },
-  {
-    name: '2020',
-   
-    "ODI Runs": 431,
-    amt: 2500,
-  },
-  {
-    name: '2021',
-    
-    "ODI Runs": 129,
-    amt: 2000,
-  },
-  {
-    name: '2022',
-   
-   "ODI Runs": 	302,
-    amt: 2181,
-  },
-  {
-    name: '2023',
-   
-    "ODI Runs": 1377,
-    amt: 2500,
-  },
-];
+
 
 
 
 const Bar1 = () => {
+
+  const [data, setdata] = useState(null);
+  useEffect(() => {
+    
+    try {
+      fetch("/getbar")
+      .then(res=>{
+        return res.json()
+      })
+      .then(msg=>{
+        setdata(msg.data)
+      })
+      
+    } catch (error) {
+      alert(error)
+    }
+    
+  }, []);
+
   return (
     
         
@@ -79,14 +44,15 @@ const Bar1 = () => {
                         }}
                     >
                         <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="name" />
+                        <XAxis dataKey="year" />
                         <YAxis />
                         <Tooltip />
                         <Legend />
-                        <Bar dataKey="ODI Runs" fill="#116731" shape={<Rectangle fill="#116731" stroke="#116731" />} />
+                        <Bar dataKey="Runs" fill="#116731" shape={<Rectangle fill="#116731" stroke="#116731" />} />
                         
                     </BarChart>
             </ResponsiveContainer>
+            
 
         </div>
    
