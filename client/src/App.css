@@ -471,7 +471,7 @@ video:hover{
   border: 0px solid red;
   box-shadow: 0 0 10px rgb(116, 116, 116);
   padding-top: 30px;
-  padding-bottom: 30px;
+  padding-bottom: 10px;
   height: 66vh;
   left: 300px;
   width: 45%;
@@ -542,6 +542,7 @@ video:hover{
 
 .alert{
   color: red;
+  height: 40px;
 
 }
 

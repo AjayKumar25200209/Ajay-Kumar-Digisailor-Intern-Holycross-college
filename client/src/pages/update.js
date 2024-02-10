@@ -28,6 +28,8 @@ const Update=()=>{
     const submitbar=()=>{
         if (crud=="Delete"){
             if(chart=="" || year==""){
+            
+                setmsg("Please Enter the Year")
 
             }
         }
@@ -121,7 +123,7 @@ const Update=()=>{
                 }
 
                
-                    { Alert ? <p className="alert">{msg}</p> : ""}
+                   <p className="alert">{msg}</p> 
                     { Message ? <p className="msg">{msg}</p> : ""}
 
                 
