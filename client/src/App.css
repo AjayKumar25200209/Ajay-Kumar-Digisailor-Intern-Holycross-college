@@ -209,7 +209,7 @@
   }
 
   to{
-    left: 10px;
+    left: 0px;
   }
   
 }
@@ -516,6 +516,7 @@ video:hover{
   border-radius: 30px;
   color: white;
   font-size: 17px;
+  cursor: pointer;
   
 
 }
@@ -541,11 +542,15 @@ video:hover{
 }
 
 .alert{
-  color: red;
+  color: rgb(0, 0, 0);
   height: 40px;
 
 }
 
 .msg{
+  position: absolute;
   color: green;
+  height: 40;
+  bottom: 50px;
+  border: 0px solid red;
 }

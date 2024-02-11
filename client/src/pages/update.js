@@ -32,24 +32,281 @@ const Update=()=>{
                 setmsg("Please Enter the Year")
 
             }
+            else{
+                try {
+                    
+                    fetch("/deletebar",{
+                        method:"POST",
+                        headers:{
+                            "Content-Type":"application/json"
+                        },
+                        body:JSON.stringify({"year":year ,"runs":runs,})
+                    })
+                    .then((res)=>{
+                        return res.json()
+                    })
+                    .then((data)=>{
+                        setMessage(true)
+                        console.log(data.msg);
+                        setmsg(data.msg)
+                        setTimeout(() => {
+                            setMessage(false)
+                        }, 2500);
+                        
+    
+                    })
+                    
+                } catch (error) {
+                    alert(error)
+                    
+                }
+            }
         }
+        else if(crud=="" || chart=="" || runs=="" || year==""){
+            setAlert(true)
+            setmsg("Please Enter All The Field")
+            setTimeout(() => {
+                setAlert(false)
+                
+            }, 2500);
+
+        }
+        else if(crud=='Add'){
+            try {
+                
+                fetch("/addbar",{
+                    method:"POST",
+                    headers:{
+                        "Content-Type":"application/json"
+                    },
+                    body:JSON.stringify({"year":year ,"runs":runs,})
+                })
+                .then((res)=>{
+                    return res.json()
+                })
+                .then((data)=>{
+                    setMessage(true)
+                    console.log(data.msg);
+                    setmsg(data.msg)
+                    setTimeout(() => {
+                        setMessage(false)
+                    }, 2500);
+                    
+
+                })
+                
+            } catch (error) {
+                alert(error)
+                
+            }
+        }
+
+       
+
+        else if(crud=='Update'){
+            try {
+                
+                fetch("/updatebar",{
+                    method:"POST",
+                    headers:{
+                        "Content-Type":"application/json"
+                    },
+                    body:JSON.stringify({"year":year ,"runs":runs,})
+                })
+                .then((res)=>{
+                    return res.json()
+                })
+                .then((data)=>{
+                    setMessage(true)
+                    console.log(data.msg);
+                    setmsg(data.msg)
+                    setTimeout(() => {
+                        setMessage(false)
+                    }, 2500);
+                    
+
+                })
+                
+            } catch (error) {
+                alert(error)
+                
+            }
+        }
+        
     }
+                            // line chart
 
     const submitline=()=>{
         if (crud=="Delete"){
+            if(chart=="" || year==""){
             
+                setmsg("Please Enter the Year")
+
+            }
+            else{
+                try {
+                    
+                    fetch("/deleteline",{
+                        method:"POST",
+                        headers:{
+                            "Content-Type":"application/json"
+                        },
+                        body:JSON.stringify({"year":year })
+                    })
+                    .then((res)=>{
+                        return res.json()
+                    })
+                    .then((data)=>{
+                        setMessage(true)
+                        console.log(data.msg);
+                        setmsg(data.msg)
+                        setTimeout(() => {
+                            setMessage(false)
+                        }, 2500);
+                        
+    
+                    })
+                    
+                } catch (error) {
+                    alert(error)
+                    
+                }
+            }
+        }
+        else if(crud=="" || chart=="" || year=="" || rank=="" || century==""){
+            setAlert(true)
+            setmsg("Please Enter All The Field")
+            setTimeout(() => {
+                setAlert(false)
+                
+            }, 2500);
+
+        }
+        else if(crud=='Add'){
+            try {
+                
+                fetch("/addline",{
+                    method:"POST",
+                    headers:{
+                        "Content-Type":"application/json"
+                    },
+                    body:JSON.stringify({"year":year ,"rank":rank, "century":century})
+                })
+                .then((res)=>{
+                    return res.json()
+                })
+                .then((data)=>{
+                    setMessage(true)
+                    console.log(data.msg);
+                    setmsg(data.msg)
+                    setTimeout(() => {
+                        setMessage(false)
+                    }, 2500);
+                    
+
+                })
+                
+            } catch (error) {
+                alert(error)
+                
+            }
+        }
+        else if(crud=='Update'){
+            try {
+                
+                fetch("/updateline",{
+                    method:"POST",
+                    headers:{
+                        "Content-Type":"application/json"
+                    },
+                    body:JSON.stringify({"year":year ,"rank":rank, "century":century})
+                })
+                .then((res)=>{
+                    return res.json()
+                })
+                .then((data)=>{
+                    setMessage(true)
+                    console.log(data.msg);
+                    setmsg(data.msg)
+                    setTimeout(() => {
+                        setMessage(false)
+                    }, 2500);
+                    
+
+                })
+                
+            } catch (error) {
+                alert(error)
+                
+            }
         }
     }
 
     const submitradar=()=>{
         if (crud=="Delete"){
+            if(chart=="" || year==""){
             
+                setmsg("Please Enter the Year")
+
+            }
+            else{
+                try {
+                    
+                    fetch("/deleteradar",{
+                        method:"POST",
+                        headers:{
+                            "Content-Type":"application/json"
+                        },
+                        body:JSON.stringify({"subject":subject })
+                    })
+                    .then((res)=>{
+                        return res.json()
+                    })
+                    .then((data)=>{
+                        setMessage(true)
+                        console.log(data.msg);
+                        setmsg(data.msg)
+                        setTimeout(() => {
+                            setMessage(false)
+                        }, 2500);
+                        
+    
+                    })
+                    
+                } catch (error) {
+                    alert(error)
+                    
+                }
+            }
+
+        }
+        else if(crud=="" || chart=="" || subject=="" ||  mark==""){
+            setAlert(true)
+            setmsg("Please Enter All The Field")
+            setTimeout(() => {
+                setAlert(false)
+                
+            }, 2500);
+
         }
     }
 
     const submitpie=()=>{
         if (crud=="Delete"){
+            if(chart=="" || year==""){
             
+                setmsg("Please Enter the Year")
+
+            }
+        }
+        else if(crud=="" || chart=="" || name=="" || value==""){
+            setAlert(true)
+            setmsg("Please Enter All The Field")
+            setTimeout(() => {
+                setAlert(false)
+                
+            }, 2500);
+
         }
     }
 
@@ -123,8 +380,8 @@ const Update=()=>{
                 }
 
                
-                   <p className="alert">{msg}</p> 
-                    { Message ? <p className="msg">{msg}</p> : ""}
+                        <p className="alert">{Alert ?  msg: ""} </p> 
+                        <p className="msg"> { Message ? msg : ""}</p>
 
                 
 

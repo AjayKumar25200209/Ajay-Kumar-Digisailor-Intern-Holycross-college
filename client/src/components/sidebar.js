@@ -23,7 +23,7 @@ const Side=()=>{
             </div>
             
             <div className="tabs">
-                <a href="#" className={`tab tab1 ${location.pathname ==="Viratodi" ? "tab1" : ""  } `} > Dashboard</a>
+                <a href="/" className={`tab tab1 ${location.pathname ==="Viratodi" ? "tab1" : ""  } `} > Dashboard</a>
                 <a href="#" className="tab "> <span><img src="src/images/back.jpg" alt="" /></span> Test</a>
                 <a href="#" className="tab">T20</a>
                 <a href="#" className="tab">IPL</a>

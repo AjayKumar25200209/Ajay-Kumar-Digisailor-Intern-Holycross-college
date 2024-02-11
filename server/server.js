@@ -25,7 +25,7 @@ mongoose.connect('mongodb://localhost:27017/test')
 const barschema = new mongoose.Schema({
   "year": Number,
   "chart": String,
-  "runs": Number
+  "Runs": Number,
 });
 
 const pieschema = new mongoose.Schema({
@@ -58,7 +58,7 @@ const piemodel = mongoose.model('piechart', pieschema);
                 // Read bar chart
 app.get("/getbar" , (req,res)=>{
    const data=barmodel.find({}).then((data)=>{
-      console.log(data);
+      
       res.status(200).json({"msg":"Success" , "data":data})
    })
 })
@@ -73,23 +73,24 @@ app.post("/deletebar" , (req,res)=>{
   })
 })
                   // update data in bar chart
-app.get("/updatebar" , (req,res)=>{
+app.post("/updatebar" , (req,res)=>{
   const data=barmodel.updateOne({ "year":req.body.year, }, {"Runs":req.body.runs})
   .then((data)=>{
-     console.log(data);
+    
      res.status(200).json({"msg":"Your data was Updated" })
   })
 })
 
                 // add data in bar chart
-app.get("/addbar" , (req,res)=>{
+app.post("/addbar" , (req,res)=>{
   const data= new barmodel({
     "year":req.body.year,
     "Runs":req.body.runs,
-    "charts":"Bar chart"
+    "chart":"Bar chart",
 
-  }).then((data)=>{
-     console.log(data);
+  })
+  data.save().then((data)=>{
+    
      res.status(200).json({"msg":"Your data was Added"})
   })
 })
@@ -116,7 +117,7 @@ app.post("/deleteline" , (req,res)=>{
   })
 })
                   // update data in line chart
-app.get("/updateline" , (req,res)=>{
+app.post("/updateline" , (req,res)=>{
   const data=linemodel.updateOne({ "year":req.body.year, }, { "ICC Ranking": req.body.rank,
   "Century": req.body.century})
   .then((data)=>{
@@ -126,14 +127,15 @@ app.get("/updateline" , (req,res)=>{
 })
 
                 // add data in line chart
-app.get("/addline" , (req,res)=>{
+app.post("/addline" , (req,res)=>{
   const data= new linemodel({
     "year":req.body.year, 
     "ICC Ranking": req.body.rank,
     "Century": req.body.century,
 
-  }).then((data)=>{
-     console.log(data);
+  })
+  data.save().then((data)=>{
+     
      res.status(200).json({"msg":"Your data was Added"})
   })
 })
@@ -159,7 +161,7 @@ app.post("/deleteradar" , (req,res)=>{
   })
 })
                   // update data in radar chart
-app.get("/updateradar" , (req,res)=>{
+app.post("/updateradar" , (req,res)=>{
   const data=radarmodel.updateOne({ "subject": req.body.subject, }, { "mark": req.body.mark,})
   .then((data)=>{
      console.log(data);
@@ -168,13 +170,14 @@ app.get("/updateradar" , (req,res)=>{
 })
 
                 // add data in radar chart
-app.get("/addradar" , (req,res)=>{
+app.post("/addradar" , (req,res)=>{
   const data= new radarmodel({
     "subject": req.body.subject,
     "mark": req.body.mark,
     "fullMark": 100,
 
-  }).then((data)=>{
+  })
+  data.save().then((data)=>{
      console.log(data);
      res.status(200).json({"msg":"Your data was Added"})
   })
@@ -201,7 +204,7 @@ app.post("/deletepie" , (req,res)=>{
   })
 })
                   // update data in pie chart
-app.get("/updatepie" , (req,res)=>{
+app.post("/updatepie" , (req,res)=>{
   const data=piemodel.updateOne({"name": req.body.name, }, { "value": req.body.value,})
   .then((data)=>{
      console.log(data);
@@ -210,12 +213,13 @@ app.get("/updatepie" , (req,res)=>{
 })
 
                 // add data in pie chart
-app.get("/addpie" , (req,res)=>{
+app.post("/addpie" , (req,res)=>{
   const data= new piemodel({
     "name": req.body.name,
     "value": req.body.value
 
-  }).then((data)=>{
+  })
+  data.save().then(data=>{
      console.log(data);
      res.status(200).json({"msg":"Your data was Added"})
   })
